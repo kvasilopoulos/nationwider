@@ -16,3 +16,5 @@ Imports:
     xml2,
     magrittr
 RoxygenNote: 6.1.1
+URL: https://github.com/kvasilopoulos/nationwider
+BugReports: https://github.com/kvasilopoulos/nationwider/issues
