@@ -1,20 +1,28 @@
 Package: nationwider
-Title: What the Package Does (One Line, Title Case)
+Title: Download House Price Data from nationwide
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Kostas",
            family = "Vasilopoulos",
            role = c("aut", "cre"),
            email = "k.vasilopoulo@gmail.com")
-Description: What the package does (one paragraph).
-License: What license it uses
+Description: Scraping the <https://www.nationwide.co.uk> for up-to-date data on house prices.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: 
     httr,
     rvest,
     xml2,
-    magrittr
+    magrittr,
+    dplyr,
+    tidyr,
+    readxl,
+    lubridate,
+    zoo
 RoxygenNote: 6.1.1
 URL: https://github.com/kvasilopoulos/nationwider
 BugReports: https://github.com/kvasilopoulos/nationwider/issues
+Suggests: 
+    testthat (>= 2.1.0),
+    covr

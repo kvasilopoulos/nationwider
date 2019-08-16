@@ -1,0 +1,45 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# nationwider
+
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/nationwider)](https://CRAN.R-project.org/package=nationwider)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Travis build status](https://travis-ci.org/kvasilopoulos/nationwider.svg?branch=master)](https://travis-ci.org/kvasilopoulos/nationwider)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/kvasilopoulos/nationwider?branch=master&svg=true)](https://ci.appveyor.com/project/kvasilopoulos/nationwider)
+[![Codecov test coverage](https://codecov.io/gh/kvasilopoulos/nationwider/branch/master/graph/badge.svg)](https://codecov.io/gh/kvasilopoulos/nationwider?branch=master)
+<!-- badges: end -->
+
+The goal of nationwider is to ...
+
+## Installation
+
+You can install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("kvasilopoulos/nationwider")
+```
+## Example
+
+This is a basic example on how to download data with {nationwider}.
+
+```{r example}
+library(nationwider)
+## basic example code
+nationwider::ntwd_get("monthly")
+```
+
+

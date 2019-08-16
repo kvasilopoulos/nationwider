@@ -1,2 +1,8 @@
 ^nationwider\.Rproj$
 ^\.Rproj\.user$
+^LICENSE\.md$
+^\.github$
+^\.travis\.yml$
+^appveyor\.yml$
+^codecov\.yml$
+^README\.Rmd$
