@@ -1,4 +1,4 @@
-#' Quickly browse to Nationwide's House Price Index webpage
+#' Quickly browse to Nationwide's webpage
 #'
 #' This function take you to the Nationwide's House Price Index webpage and
 #' return the URL invisibly.

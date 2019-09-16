@@ -43,7 +43,7 @@ np <- nationwider::ntwd_get("new_prop")
 np
 ```
 
-We reshapre our data from the initial form into a more wider from.
+We reshapre our data from the initial form into a more wider form.
 
 ```{r wrangling}
 library(dplyr)

@@ -54,7 +54,7 @@ np
 #> # ... with 5,114 more rows
 ```
 
-We reshapre our data from the initial form into a more wider from.
+We reshapre our data from the initial form into a more wider form.
 
 ``` r
 library(dplyr)
