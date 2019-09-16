@@ -3,6 +3,7 @@
 #' This function take you to the Nationwide's House Price Index webpage and
 #' return the URL invisibly.
 #'
+#' @export
 #' @examples
 #' ntwd_browse()
 ntwd_browse <- function() {
