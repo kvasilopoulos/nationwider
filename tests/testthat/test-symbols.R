@@ -1,3 +1,4 @@
+context("functionality")
 
 symbols <-
   c("monthly", "quarterly", "since_1952", "inflation_adjusted", "regional",
@@ -23,3 +24,4 @@ test_that("symbol works", {
   expect_error(ntwd_get("aftb_ind"), NA)
   expect_error(ntwd_get("aftb_hper"), NA)
 })
+

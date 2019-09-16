@@ -38,8 +38,29 @@ This is a basic example on how to download data with {nationwider}.
 
 ```{r example}
 library(nationwider)
-## basic example code
-nationwider::ntwd_get("monthly")
+
+np <- nationwider::ntwd_get("new_prop")
+np
 ```
 
+We reshapre our data from the initial form into a more wider from.
+
+```{r wrangling}
+library(dplyr)
+library(tidyr)
+
+np %>% 
+  dplyr::filter(type == "Price") %>% 
+  spread(region,value)
+```
+
+Here we are plotting all regions in both types `Index` and `Price`.
+
+```{r plotting, warning=FALSE}
+library(ggplot2)
+np %>% 
+  ggplot(aes(Date, value, col = region)) +
+  geom_line() +
+  facet_wrap(~ type, scales = "free")
+```
 

@@ -35,22 +35,68 @@ This is a basic example on how to download data with {nationwider}.
 
 ``` r
 library(nationwider)
-## basic example code
-nationwider::ntwd_get("monthly")
-#> # A tibble: 343 x 7
-#>    Date       `Average House ~ `INDEX Q1 1993=~ `Seasonally Adj~
-#>    <date>                <dbl>            <dbl>            <dbl>
-#>  1 1991-01-01           53052.             106.             107.
-#>  2 1991-02-01           53497.             107.             107.
-#>  3 1991-03-01           52893.             106.             107.
-#>  4 1991-04-01           53677.             107.             107.
-#>  5 1991-05-01           54386.             108.             107.
-#>  6 1991-06-01           55107.             110.             108.
-#>  7 1991-07-01           54541.             109.             107.
-#>  8 1991-08-01           54041.             108.             107.
-#>  9 1991-09-01           53259.             106.             107.
-#> 10 1991-10-01           53467.             107.             107.
-#> # ... with 333 more rows, and 3 more variables: `Monthly % Change
-#> #   (SA)` <dbl>, `Year % Change` <dbl>, `Latest 3 months on previous 3
-#> #   months` <dbl>
+
+np <- nationwider::ntwd_get("new_prop")
+np
+#> # A tibble: 5,124 x 4
+#>    Date       region type   value
+#>    <date>     <chr>  <chr>  <dbl>
+#>  1 1973-10-01 North  Price 13528.
+#>  2 1974-01-01 North  Price 13928.
+#>  3 1974-04-01 North  Price 14119.
+#>  4 1974-07-01 North  Price 13624.
+#>  5 1974-10-01 North  Price 14838.
+#>  6 1975-01-01 North  Price 14966.
+#>  7 1975-04-01 North  Price 15716.
+#>  8 1975-07-01 North  Price 16084.
+#>  9 1975-10-01 North  Price 17569.
+#> 10 1976-01-01 North  Price 18096.
+#> # ... with 5,114 more rows
 ```
+
+We reshapre our data from the initial form into a more wider from.
+
+``` r
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+library(tidyr)
+
+np %>% 
+  dplyr::filter(type == "Price") %>% 
+  spread(region,value)
+#> # A tibble: 183 x 16
+#>    Date       type  `East Anglia` `East Mids` London `N Ireland`  North
+#>    <date>     <chr>         <dbl>       <dbl>  <dbl>       <dbl>  <dbl>
+#>  1 1973-10-01 Price         9375.       8860. 11780.      13598. 13528.
+#>  2 1974-01-01 Price         9275.       8879. 11827.      15334. 13928.
+#>  3 1974-04-01 Price         9549.       8967. 12077.      15931. 14119.
+#>  4 1974-07-01 Price         9494.       8850. 12390.      16889. 13624.
+#>  5 1974-10-01 Price         9531.       8937. 12265.      17522. 14838.
+#>  6 1975-01-01 Price         9779.       9054. 12234.      18209. 14966.
+#>  7 1975-04-01 Price         9953.       9539. 12468.      19548. 15716.
+#>  8 1975-07-01 Price         9907.       9617. 12843.      20578. 16084.
+#>  9 1975-10-01 Price        10393.       9762. 13273.      22622. 17569.
+#> 10 1976-01-01 Price        10438.       9985. 13187.      23761. 18096.
+#> # ... with 173 more rows, and 9 more variables: `North West` <dbl>, `Outer
+#> #   Met` <dbl>, `Outer S East` <dbl>, Scotland <dbl>, `South West` <dbl>,
+#> #   Uk <dbl>, Wales <dbl>, `West Mids` <dbl>, `Yorks & Hside` <dbl>
+```
+
+Here we are plotting all regions in both types `Index` and `Price`.
+
+``` r
+library(ggplot2)
+np %>% 
+  ggplot(aes(Date, value, col = region)) +
+  geom_line() +
+  facet_wrap(~ type, scales = "free")
+```
+
+<img src="man/figures/README-plotting-1.png" width="100%" />

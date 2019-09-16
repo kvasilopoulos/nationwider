@@ -49,4 +49,11 @@ char_na_colon <- function(x) {
   paste("", x) %>% gsub("NA", "", .)
 }
 
+set_metadata <- function(x, ...) {
+  attrs <- list(...)
+  attributes(x) <- c(attributes(x), attrs)
+  x
+}
+
+
 globalVariables(c(".", "Date", "type", "region", "value", "n", "...1"))
