@@ -43,8 +43,10 @@ ntwd_get_id <- function(id) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' x <- ntwd_get("since_1952")
 #' ntwd_meta(x)
+#' }
 ntwd_meta <- function(x) {
   attr(x, "metadata") %||%
     message("the objects does not contain metadata")
@@ -64,13 +66,14 @@ ntwd_meta <- function(x) {
 #' @export
 #'
 #' @examples
-#'
+#'\dontrun{
 #' ntwd_get("monthly")
 #'
 #' ntwd_get("terraced")
 #'
 #' # For a list of datasets
 #' ?ntwd_datasets
+#' }
 ntwd_get <- function(id) {
   ntwd_get_id(id)
 }
