@@ -1,24 +1,5 @@
 context("tidy")
 
-library(lubridate)
-
-has_date <- function(x) {
-  first <- x[, 1, drop = TRUE]
-  lubridate::is.Date(first) && names(x)[1] == "Date"
-}
-
-has_proper_names <- function(x) {
-  names(x)[-1] %in% c("region", "type", "key", "value")
-}
-
-is_tidy <- function(x) {
-  has_date(x) && has_proper_names(x)
-}
-
-expect_tidy <- function(x) {
-  expect(is_tidy(x), "object is not tidy")
-}
-
 test_that("tidy objects", {
   expect_tidy(ntwd_get("monthly"))
   expect_tidy(ntwd_get("quarterly"))
@@ -29,7 +10,7 @@ test_that("tidy objects", {
   expect_tidy(ntwd_get("new_prop"))
   expect_tidy(ntwd_get("mod_prop"))
   expect_tidy(ntwd_get("old_prop"))
-  # ntwd_get("not_new_prop") # except this one
+  # ntwd_get("not_new_prop") # except this one which has long format
   expect_tidy(ntwd_get("first"))
   expect_tidy(ntwd_get("fowner"))
   expect_tidy(ntwd_get("terraced"))
