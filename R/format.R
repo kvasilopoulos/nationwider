@@ -28,6 +28,7 @@ read_excel_silently_ <- function(...) {
 ntwd_get_generic <- function(id) {
   num <- grep(gsub("_", "-", id), ntwd_tf(NULL))
   xfile <- ntwd_tf(num[1])
+  on.exit(file.remove(xfile))
   x <- read_excel_silently(xfile, skip = 0, n_max = 3, col_names = FALSE)
   x[1,] <- zoo::na.locf(unlist(x[1,])) %>% char_na()
   x[2,] <- char_na(x[2,])
@@ -47,14 +48,18 @@ ntwd_get_generic <- function(id) {
 }
 
 ntwd_get_monthly <- function() {
-  ntwd_tf(1) %>%
+  xfile <- ntwd_tf(1)
+  on.exit(file.remove(xfile))
+  xfile %>%
     read_excel_silently(.) %>%
     clean_date() %>%
     gather(key, value, -Date)
 }
 
 ntwd_get_quarterly <- function() {
-  ntwd_tf(2) %>%
+  xfile <- ntwd_tf(2)
+  on.exit(file.remove(xfile))
+  xfile %>%
     read_excel_silently(.) %>%
     clean_date_qy() %>%
     dplyr::rename_all(~ gsub(":", "", .)) %>%
@@ -63,6 +68,7 @@ ntwd_get_quarterly <- function() {
 
 ntwd_get_since_1952 <- function() {
   xfile <- ntwd_tf(3)
+  on.exit(file.remove(xfile))
   x <- read_excel_silently(xfile, skip = 3, n_max = 3, col_names = FALSE)
   x[1,] <- c("", zoo::na.locf(unlist(x[1,])))
   x[2,] <- paste0(": ", x[2,])
@@ -91,6 +97,7 @@ ntwd_get_since_1952 <- function() {
 
 ntwd_get_inflation_adjusted <- function() {
   xfile <- ntwd_tf(4)
+  on.exit(file.remove(xfile))
   skip_after <- read_excel_silently(xfile) %>% trunc_na() %>% nrow()
   read_excel_silently(xfile, n_max = skip_after) %>%
     clean_date_yq() %>%
@@ -100,6 +107,7 @@ ntwd_get_inflation_adjusted <- function() {
 
 ntwd_get_seasonal_regional <- function() {
   xfile <- ntwd_tf(6)
+  on.exit(file.remove(xfile))
   x <- read_excel_silently(xfile, skip = 0, n_max = 3, col_names = FALSE)
   x <- x[-2,]
   x[1,] <- c(NA, zoo::na.locf(unlist(x[1,]))) %>% char_na()
@@ -124,6 +132,7 @@ ntwd_get_seasonal_regional <- function() {
 
 ntwd_get_not_new_prop <- function() {
   xfile <- ntwd_tf(10)
+  on.exit(file.remove(xfile))
   nms <- c("Date", "UK Not new") #(\u00A3)
   read_excel_silently(
     xfile, skip = 3, col_types = c("text", "text", "skip"),
@@ -136,6 +145,7 @@ ntwd_get_not_new_prop <- function() {
 
 ntwd_get_aftb_ind <- function() {
   xfile <- ntwd_tf(17)
+  on.exit(file.remove(xfile))
   percent <- read_excel_silently(xfile, skip = 3) %>%
     clean_date_yq() %>%
     mutate(type = "percentage") %>%
@@ -149,7 +159,9 @@ ntwd_get_aftb_ind <- function() {
 }
 
 ntwd_get_aftb_hper <- function() {
-  ntwd_tf(18) %>%
+  xfile <- ntwd_tf(18)
+  on.exit(file.remove(xfile))
+  xfile %>%
     read_excel_silently(.) %>%
     clean_date_yq() %>%
     gather(region, value, -Date, factor_key = TRUE)
