@@ -33,15 +33,14 @@ ntwd_get_symbol <- function(symbol) {
 #' Access object's metadata
 #'
 #' Some datasets in nationwide contain metadata that cannot be displayed in
-#' a dataframe, hence using \code{\link{ntwd_meta()}} the grants access to the
+#' a dataframe, hence using \code{ntwd_meta} the grants access to the
 #' object's metadata that are stored as attributes to the dataframe.
 #'
-#' @param x object return from \code{\link{ntwd_get()}}
+#' @param x object return from \code{\link{ntwd_get}}
 #'
 #' @details Not all objects contain metadata
 #'
 #' @export
-#' @importFrom rlang %||%
 #' @examples
 #' x <- ntwd_get("since_1952")
 #' ntwd_meta(x)

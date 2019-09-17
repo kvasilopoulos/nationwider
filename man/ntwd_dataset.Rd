@@ -6,11 +6,11 @@
 \title{Available Datasets}
 \description{
 These are the datasets available from \url{https://www.nationwide.co.uk}. For more details
-you can see use \code{\link{ntwd_browse()}} to browse Nationwide's House Price Index webpage.
+you can see use \code{\link{ntwd_browse}} to browse Nationwide's House Price Index webpage.
 }
 \details{
 The format text before the semicolon indication the symbol id that is use to get
-the data using \code{\link{ntwd_get()}}. After the semicolon is a short description
+the data using \code{\link{ntwd_get}}. After the semicolon is a short description
 provided by nationwide.
 
 \itemize{

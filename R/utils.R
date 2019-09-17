@@ -55,5 +55,12 @@ set_metadata <- function(x, ...) {
   x
 }
 
+`%||%` <- function(x, y) {
+  if (is.null(x))
+    y
+  else x
+}
 
-globalVariables(c(".", "Date", "type", "region", "value", "n", "...1"))
+
+globalVariables(c(".", "Date", "type", "region", "key","type","value", "n",
+                  "...1"))

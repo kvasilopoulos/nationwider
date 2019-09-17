@@ -21,7 +21,7 @@ read_excel_silently_ <- function(...) {
 
 #' @importFrom zoo na.locf
 #' @importFrom dplyr mutate transmute_all mutate_if slice rename_all full_join n
-#' @importFrom dplyr select
+#' @importFrom dplyr select pull
 #' @importFrom tidyr gather separate
 #' @importFrom magrittr set_names
 #' @importFrom lubridate is.Date yq
@@ -151,6 +151,6 @@ ntwd_get_aftb_ind <- function() {
 ntwd_get_aftb_hper <- function() {
   ntwd_tf(18) %>%
     read_excel_silently(.) %>%
-    clean_date_yq() %>% pull(Date)
+    clean_date_yq() %>%
     gather(region, value, -Date, factor_key = TRUE)
 }

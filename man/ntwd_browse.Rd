@@ -2,7 +2,7 @@
 % Please edit documentation in R/browse.R
 \name{ntwd_browse}
 \alias{ntwd_browse}
-\title{Quickly browse to Nationwide's House Price Index webpage}
+\title{Quickly browse to Nationwide's webpage}
 \usage{
 ntwd_browse()
 }

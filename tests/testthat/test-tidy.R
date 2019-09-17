@@ -1,5 +1,7 @@
 context("tidy")
 
+library(lubridate)
+
 has_date <- function(x) {
   first <- x[, 1, drop = TRUE]
   lubridate::is.Date(first) && names(x)[1] == "Date"
