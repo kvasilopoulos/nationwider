@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "k.vasilopoulo@gmail.com",,
            comment = c(ORCID = "0000-0002-9769-6395"))
-Description: Web craping the <https://www.nationwide.co.uk> for up-to-date data on 
+Description: Web scraping the <https://www.nationwide.co.uk> for up-to-date data on 
     house price indices. Download data in tidy format.
 License: GPL-3
 Encoding: UTF-8

@@ -7,12 +7,12 @@
 ntwd_meta(x)
 }
 \arguments{
-\item{x}{object return from \code{\link{ntwd_get}}}
+\item{x}{The object that is returned from \code{\link{ntwd_get}}.}
 }
 \description{
 Some datasets in nationwide contain metadata that cannot be displayed in
-a dataframe, hence using \code{ntwd_meta} the grants access to the
-object's metadata that are stored as attributes to the dataframe.
+a dataframe. All metadata are stored as attributes to the dataframe, where it
+can be displayed with \code{ntwd_meta}.
 }
 \details{
 Not all objects contain metadata

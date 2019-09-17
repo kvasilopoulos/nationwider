@@ -17,7 +17,10 @@ status](https://ci.appveyor.com/api/projects/status/github/kvasilopoulos/nationw
 coverage](https://codecov.io/gh/kvasilopoulos/nationwider/branch/master/graph/badge.svg)](https://codecov.io/gh/kvasilopoulos/nationwider?branch=master)
 <!-- badges: end -->
 
-The goal of nationwider is to …
+The goal of {nationwider} is to provide house price data from
+[\<nationwide.co.uk\>](nationwide.co.uk). All datasets available have
+been curated using tidytools and are return in a convenient rectangular
+tidy format.
 
 ## Installation
 
@@ -54,7 +57,7 @@ np
 #> # ... with 5,114 more rows
 ```
 
-We reshapre our data from the initial form into a more wider form.
+We reshape our data from the initial form into a wider form.
 
 ``` r
 library(dplyr)
@@ -89,7 +92,8 @@ np %>%
 #> #   Uk <dbl>, Wales <dbl>, `West Mids` <dbl>, `Yorks & Hside` <dbl>
 ```
 
-Here we are plotting all regions in both types `Index` and `Price`.
+Here we are plotting all regions using type `Index` and `Price` as
+facets.
 
 ``` r
 library(ggplot2)

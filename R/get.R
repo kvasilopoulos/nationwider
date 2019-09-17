@@ -1,11 +1,11 @@
 
 # 5,7-16 same format ------------------------------------------------------
 
-ntwd_get_symbol <- function(symbol) {
-  if (missing(symbol)) {
-    stop("You must specify a `symbol`, see ?nwtd_dataset", call. = FALSE)
+ntwd_get_id <- function(id) {
+  if (missing(id)) {
+    stop("You must specify a `id`, see ?nwtd_dataset", call. = FALSE)
   }
-  symbol_categories <-
+  id_categories <-
     c("monthly", "quarterly", "since_1952", "inflation_adjusted",
       "regional", "seasonal_regional",
       "new_prop", "mod_prop", "old_prop", "not_new_prop",
@@ -13,10 +13,10 @@ ntwd_get_symbol <- function(symbol) {
       "terraced", "flats", "detached",
       "aftb_ind", "aftb_hper")
 
-  if (!(symbol %in% symbol_categories)) {
-    stop("`symbol` is not valid, see ?ntwd_dataset.", call. = FALSE)
+  if (!(id %in% id_categories)) {
+    stop("`id` is not valid, see ?ntwd_dataset.", call. = FALSE)
   }
-  switch(symbol,
+  switch(id,
      monthly = ntwd_get_monthly(),
      quarterly = ntwd_get_quarterly(),
      since_1952 = ntwd_get_since_1952(),
@@ -26,21 +26,22 @@ ntwd_get_symbol <- function(symbol) {
      not_new_prop = ntwd_get_not_new_prop(),
      aftb_ind = ntwd_get_aftb_ind(),
      aftb_hper = ntwd_get_aftb_hper(),
-     ntwd_get_generic(symbol)
+     ntwd_get_generic(id)
   )
 }
 
 #' Access object's metadata
 #'
 #' Some datasets in nationwide contain metadata that cannot be displayed in
-#' a dataframe, hence using \code{ntwd_meta} the grants access to the
-#' object's metadata that are stored as attributes to the dataframe.
+#' a dataframe. All metadata are stored as attributes to the dataframe, where it
+#' can be displayed with \code{ntwd_meta}.
 #'
-#' @param x object return from \code{\link{ntwd_get}}
+#' @param x The object that is returned from \code{\link{ntwd_get}}.
 #'
 #' @details Not all objects contain metadata
 #'
 #' @export
+#'
 #' @examples
 #' x <- ntwd_get("since_1952")
 #' ntwd_meta(x)
@@ -50,14 +51,27 @@ ntwd_meta <- function(x) {
 }
 
 
-#' Download house price data from Nationwide
+#' Download House Price Data from Nationwide
 #'
-#' \code{\link{ntwd_dataset}}
+#' This function scrapes Nationwide's House Price Index webpage and
+#' downloads data in tidy format. Available datasets are given an `id`. All
+#' available `id` and short descriptions  can be viewed via `?datasets`.
+#' For more information the user can browse the source webpage through
+#' \code{\link{ntwd_browse}}.
 #'
-#' @param symbol which dataset symbol to fetch.
+#' @param id which dataset `id`to fetch.
 #'
 #' @export
-ntwd_get <- function(symbol) {
-  ntwd_get_symbol(symbol)
+#'
+#' @examples
+#'
+#' ntwd_get("monthly")
+#'
+#' ntwd_get("terraced")
+#'
+#' # For a list of datasets
+#' ?ntwd_datasets
+ntwd_get <- function(id) {
+  ntwd_get_id(id)
 }
 

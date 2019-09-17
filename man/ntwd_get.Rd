@@ -2,13 +2,26 @@
 % Please edit documentation in R/get.R
 \name{ntwd_get}
 \alias{ntwd_get}
-\title{Download house price data from Nationwide}
+\title{Download House Price Data from Nationwide}
 \usage{
-ntwd_get(symbol)
+ntwd_get(id)
 }
 \arguments{
-\item{symbol}{which dataset symbol to fetch.}
+\item{id}{which dataset `id`to fetch.}
 }
 \description{
-\code{\link{ntwd_dataset}}
+This function scrapes Nationwide's House Price Index webpage and
+downloads data in tidy format. Available datasets are given an `id`. All
+available `id` and short descriptions  can be viewed via `?datasets`.
+For more information the user can browse the source webpage through
+\code{\link{ntwd_browse}}.
+}
+\examples{
+
+ntwd_get("monthly")
+
+ntwd_get("terraced")
+
+# For a list of datasets
+?ntwd_datasets
 }

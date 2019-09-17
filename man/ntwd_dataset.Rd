@@ -9,8 +9,8 @@ These are the datasets available from \url{https://www.nationwide.co.uk}. For mo
 you can see use \code{\link{ntwd_browse}} to browse Nationwide's House Price Index webpage.
 }
 \details{
-The format text before the semicolon indication the symbol id that is use to get
-the data using \code{\link{ntwd_get}}. After the semicolon is a short description
+The formatted text before the semicolon indicates the `id `that is used to get
+the data through \code{\link{ntwd_get}}. After the semicolon there is a short description
 provided by nationwide.
 
 \itemize{

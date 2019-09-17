@@ -25,8 +25,8 @@ read_excel_silently_ <- function(...) {
 #' @importFrom tidyr gather separate
 #' @importFrom magrittr set_names
 #' @importFrom lubridate is.Date yq
-ntwd_get_generic <- function(symbol) {
-  num <- grep(gsub("_", "-", symbol), ntwd_tf(NULL))
+ntwd_get_generic <- function(id) {
+  num <- grep(gsub("_", "-", id), ntwd_tf(NULL))
   xfile <- ntwd_tf(num[1])
   x <- read_excel_silently(xfile, skip = 0, n_max = 3, col_names = FALSE)
   x[1,] <- zoo::na.locf(unlist(x[1,])) %>% char_na()
