@@ -18,9 +18,9 @@ coverage](https://codecov.io/gh/kvasilopoulos/nationwider/branch/master/graph/ba
 <!-- badges: end -->
 
 The goal of {nationwider} is to provide house price data from
-[\<nationwide.co.uk\>](nationwide.co.uk). All datasets available have
-been curated using tidytools and are return in a convenient rectangular
-tidy format.
+[\<nationwide.co.uk\>](https://www.nationwide.co.uk/). All datasets
+available have been curated using tidytools and returned in a convenient
+rectangular tidy format.
 
 ## Installation
 
