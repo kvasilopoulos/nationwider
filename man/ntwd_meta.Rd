@@ -18,7 +18,7 @@ can be displayed with \code{ntwd_meta}.
 Not all objects contain metadata
 }
 \examples{
-\dontrun{
+\donttest{
 x <- ntwd_get("since_1952")
 ntwd_meta(x)
 }

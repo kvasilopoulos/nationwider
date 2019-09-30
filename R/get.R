@@ -43,7 +43,7 @@ ntwd_get_id <- function(id) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' x <- ntwd_get("since_1952")
 #' ntwd_meta(x)
 #' }
@@ -66,7 +66,7 @@ ntwd_meta <- function(x) {
 #' @export
 #'
 #' @examples
-#'\dontrun{
+#'\donttest{
 #' ntwd_get("monthly")
 #'
 #' ntwd_get("terraced")

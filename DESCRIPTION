@@ -1,5 +1,5 @@
 Package: nationwider
-Title: Download House Price Data from nationwide
+Title: Download House Price Data From Nationwide
 Version: 1.0.0
 Authors@R: 
     person(given = "Kostas",

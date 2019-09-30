@@ -17,7 +17,7 @@ For more information the user can browse the source webpage through
 \code{\link{ntwd_browse}}.
 }
 \examples{
-\dontrun{
+\donttest{
 ntwd_get("monthly")
 
 ntwd_get("terraced")
