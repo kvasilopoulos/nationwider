@@ -70,7 +70,7 @@ ntwd_browse." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nationwider</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@ ntwd_browse." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/kvasilopoulos/exuber">
+  <a href="https://github.com/kvasilopoulos/nationwider">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -135,8 +135,8 @@ For more information the user can browse the source webpage through
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>ntwd_get</span>(<span class='st'>"monthly"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 2,064 x 3</span><span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'>ntwd_get</span>(<span class='st'>"monthly"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 2,070 x 3</span><span>
 #&gt;    Date       key                  value
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> 1991-01-01 Average House Price </span><span style='text-decoration: underline;'>53</span><span>052.
@@ -149,8 +149,8 @@ For more information the user can browse the source webpage through
 #&gt; </span><span style='color: #555555;'> 8</span><span> 1991-08-01 Average House Price </span><span style='text-decoration: underline;'>54</span><span>041.
 #&gt; </span><span style='color: #555555;'> 9</span><span> 1991-09-01 Average House Price </span><span style='text-decoration: underline;'>53</span><span>259.
 #&gt; </span><span style='color: #555555;'>10</span><span> 1991-10-01 Average House Price </span><span style='text-decoration: underline;'>53</span><span>467.
-#&gt; </span><span style='color: #555555;'># ... with 2,054 more rows</span><span></div><div class='input'>
-<span class='fu'>ntwd_get</span>(<span class='st'>"terraced"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3,192 x 4</span><span>
+#&gt; </span><span style='color: #555555;'># ... with 2,060 more rows</span><span></div><div class='input'>
+<span class='fu'>ntwd_get</span>(<span class='st'>"terraced"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3,220 x 4</span><span>
 #&gt;    Date       region type   value
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> 1991-01-01 North  Price </span><span style='text-decoration: underline;'>33</span><span>943.
@@ -163,9 +163,10 @@ For more information the user can browse the source webpage through
 #&gt; </span><span style='color: #555555;'> 8</span><span> 1992-10-01 North  Price </span><span style='text-decoration: underline;'>33</span><span>585.
 #&gt; </span><span style='color: #555555;'> 9</span><span> 1993-01-01 North  Price </span><span style='text-decoration: underline;'>35</span><span>899.
 #&gt; </span><span style='color: #555555;'>10</span><span> 1993-04-01 North  Price </span><span style='text-decoration: underline;'>37</span><span>458.
-#&gt; </span><span style='color: #555555;'># ... with 3,182 more rows</span><span></div><div class='input'>
+#&gt; </span><span style='color: #555555;'># ... with 3,210 more rows</span><span></div><div class='input'>
 <span class='co'># For a list of datasets</span>
-?<span class='no'>ntwd_datasets</span></div></span></pre>
+?<span class='no'>ntwd_datasets</span>
+<span class='co'># }</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
