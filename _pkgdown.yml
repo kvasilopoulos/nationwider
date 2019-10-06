@@ -9,6 +9,21 @@ template:
   params:
     bootswatch: cosmo
 
+reference:
+
+  - title: Download
+    contents:
+      - ntwd_get
+
+  - title: Browse & metadata
+    contents:
+      - ntwd_browse
+      - ntwd_meta
+
+  - title: Dataset
+    contents:
+      - ntwd_dataset
+
 navbar:
   type: default
   structure:
