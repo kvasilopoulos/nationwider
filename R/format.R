@@ -41,8 +41,8 @@ ntwd_get_generic <- function(id) {
     clean_date_qy() %>%
     set_names(c("Date", nms[-1])) %>%
     mutate_if(Negate(lubridate::is.Date), as.double) %>%
-    gather(key, value, -Date) %>%
-    separate(key, into = c("region", "type"),  sep = "[^[:alnum:]]:") %>%
+    gather(type, value, -Date) %>%
+    separate(type, into = c("region", "type"),  sep = "[^[:alnum:]]:") %>%
     # mutate(type = recode(type, "\u00A3" = "Price", "INDEX" = "Index")) %>%
     mutate(region = stringr::str_to_title(region))
 }
@@ -55,7 +55,7 @@ ntwd_get_monthly <- function() {
   xfile %>%
     read_excel_silently(.) %>%
     clean_date() %>%
-    gather(key, value, -Date)
+    gather(type, value, -Date)
 }
 
 ntwd_get_quarterly <- function() {
@@ -65,7 +65,7 @@ ntwd_get_quarterly <- function() {
     read_excel_silently(.) %>%
     clean_date_qy() %>%
     dplyr::rename_all(~ gsub(":", "", .)) %>%
-    gather(key, value, -Date)
+    gather(type, value, -Date)
 }
 
 ntwd_get_since_1952 <- function() {
@@ -91,8 +91,8 @@ ntwd_get_since_1952 <- function() {
     clean_date_qy() %>%
     set_names(nms) %>%
     mutate_if(Negate(lubridate::is.Date), as.double) %>%
-    gather(key, value, -Date) %>%
-    tidyr::separate(key, into = c("key", "type"), sep = "[^[:alnum:]]:") %>%
+    gather(type, value, -Date) %>%
+    tidyr::separate(type, into = c("house_type", "type"), sep = "[^[:alnum:]]:") %>%
     mutate(type = trimws(type)) %>%
     set_metadata(metadata = index_year)
 }
@@ -104,9 +104,10 @@ ntwd_get_inflation_adjusted <- function() {
   read_excel_silently(xfile, n_max = skip_after) %>%
     clean_date_yq() %>%
     rename_all(list(~ gsub("\\s*\\([^\\)]+\\)","",.))) %>%
-    gather(key, value, -Date)
+    gather(type, value, -Date)
 }
 
+#' @importFrom dplyr recode
 ntwd_get_seasonal_regional <- function() {
   xfile <- ntwd_tf(6)
   on.exit(file.remove(xfile))
@@ -125,8 +126,8 @@ ntwd_get_seasonal_regional <- function() {
   read_excel_silently(xfile, skip = 3, col_names = FALSE) %>%
     clean_date_qy() %>%
     set_names(nms) %>%
-    gather(key, value, -Date) %>%
-    tidyr::separate(key, into = c("type", "region"), sep = "[^[:alnum:]]:") %>%
+    gather(type, value, -Date) %>%
+    tidyr::separate(type, into = c("type", "region"), sep = "[^[:alnum:]]:") %>%
     mutate(region = trimws(region)) %>%
     mutate(region = stringr::str_to_title(region),
            region = recode(region, "Uk" = "UK")) %>%
