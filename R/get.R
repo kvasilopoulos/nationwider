@@ -10,7 +10,7 @@ ntwd_get_id <- function(id) {
       "regional", "seasonal_regional",
       "new_prop", "mod_prop", "old_prop", "not_new_prop",
       "first","fowner",
-      "terraced", "flats", "detached",
+      "terraced", "flats", "semi_det", "detached",
       "aftb_ind", "aftb_hper")
 
   if (!(id %in% id_categories)) {
@@ -49,7 +49,7 @@ ntwd_get_id <- function(id) {
 #' }
 ntwd_meta <- function(x) {
   attr(x, "metadata") %||%
-    message("the objects does not contain metadata")
+    message("the object does not contain metadata")
 }
 
 

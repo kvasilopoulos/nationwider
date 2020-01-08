@@ -42,7 +42,7 @@ provided by nationwide.
   \itemize{
     \item \code{terraced}: Terraced (Post '91)
     \item \code{flats}: Flats (Post '91)
-    \item \code{semi_detached}: Semi Detached (Post '91)
+    \item \code{semi_det}: Semi Detached (Post '91)
     \item \code{detached}: Detached (Post '91)
    }
  \item Affordability Estimates
