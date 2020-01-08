@@ -15,8 +15,8 @@ ntwd_tf <- function(file = NULL) {
     return(urls)
   }
   url <- magrittr::extract(urls, file)
+  message("Accessing ", url)
   tf <- tempfile(fileext = ".xls")
   httr::GET(url, write_disk(tf))
-
   structure(tf, source = url)
 }
