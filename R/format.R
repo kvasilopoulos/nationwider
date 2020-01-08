@@ -47,6 +47,8 @@ ntwd_get_generic <- function(id) {
     mutate(region = stringr::str_to_title(region))
 }
 
+# TODO rename key to type
+
 ntwd_get_monthly <- function() {
   xfile <- ntwd_tf(1)
   on.exit(file.remove(xfile))
@@ -126,7 +128,8 @@ ntwd_get_seasonal_regional <- function() {
     gather(key, value, -Date) %>%
     tidyr::separate(key, into = c("type", "region"), sep = "[^[:alnum:]]:") %>%
     mutate(region = trimws(region)) %>%
-    mutate(region = stringr::str_to_title(region)) %>%
+    mutate(region = stringr::str_to_title(region),
+           region = recode(region, "Uk" = "UK")) %>%
     select(Date, region, type, value)
 }
 
