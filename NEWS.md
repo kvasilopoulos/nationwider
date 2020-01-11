@@ -1,4 +1,6 @@
-# nationwider 1.0.1
+# nationwider 1.1.0
+
+* Added a `NEWS.md` file to track changes to the package.
 
 ## Bug Fixes
 
@@ -14,9 +16,9 @@
 
 ## Minor improvements
 
-* Renamed the colname `key` to `type` and `house_type`
+* Renamed column `key` to `type/house_type`
 
 # nationwider 1.0.0
 
 * Initial release
-* Added a `NEWS.md` file to track changes to the package.
+

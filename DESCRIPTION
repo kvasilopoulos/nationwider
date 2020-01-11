@@ -1,6 +1,6 @@
 Package: nationwider
 Title: Download House Price Data from Nationwide
-Version: 1.0.0.9000
+Version: 1.1.0
 Authors@R: 
     person(given = "Kostas",
            family = "Vasilopoulos",
@@ -23,7 +23,7 @@ Imports:
     lubridate (>= 1.7.4),
     zoo (>= 1.8.6),
     stringr (>= 1.4.0)
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.2
 URL: https://github.com/kvasilopoulos/nationwider
 BugReports: https://github.com/kvasilopoulos/nationwider/issues
 Suggests: 
