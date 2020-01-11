@@ -134,7 +134,7 @@ ntwd_get_seasonal_regional <- function(.access_info) {
   nms[1] <- "Date"
 
   read_excel_silently(xfile, skip = 3, col_names = FALSE) %>%
-    select(-...30) %>%
+    select(-ncol(.)) %>%
     clean_date_qy() %>%
     set_names(nms) %>%
     gather(type, value, -Date) %>%
