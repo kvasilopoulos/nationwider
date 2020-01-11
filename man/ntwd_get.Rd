@@ -7,9 +7,9 @@
 ntwd_get(id, verbose = TRUE)
 }
 \arguments{
-\item{id}{which dataset `id`to fetch.}
+\item{id}{which `id`to fetch. See `?ntwd_dataset` for a full list.}
 
-\item{verbose}{prints the download url of the data.}
+\item{verbose}{whether to print the url of the data.}
 }
 \value{
 Returns a tibble.

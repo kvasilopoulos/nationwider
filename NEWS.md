@@ -4,7 +4,7 @@
 
 ## Bug Fixes
 
-* Added `semi-det` to the list of possible of available ids
+* Added `semi-det` to the list of available ids
 * Fixed NA name in ntwd_get("seasonal_regional"), since the coming update of tidyselect 1.0 which performs stronger name checking (#1).
 
 ## New Features

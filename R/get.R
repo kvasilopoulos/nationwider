@@ -42,7 +42,6 @@ ntwd_get_id <- function(id, .verbose) {
 #'
 #' @return A chracter vector.
 #'
-#' @seealso
 #' @export
 #'
 #' @examples
@@ -64,8 +63,8 @@ ntwd_meta <- function(x) {
 #' For more information the user can browse the source webpage through
 #' \code{\link{ntwd_browse}}.
 #'
-#' @param id which dataset `id`to fetch.
-#' @param verbose prints the download url of the data.
+#' @param id which `id`to fetch. See `?ntwd_dataset` for a full list.
+#' @param verbose whether to print the url of the data.
 #'
 #' @return Returns a tibble.
 #'
