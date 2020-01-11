@@ -11,6 +11,9 @@ ntwd_get(id, verbose = TRUE)
 
 \item{verbose}{prints the download url of the data.}
 }
+\value{
+Returns a tibble.
+}
 \description{
 This function scrapes Nationwide's House Price Index webpage and
 downloads data in tidy format. Available datasets are given an `id`. All

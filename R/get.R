@@ -40,6 +40,9 @@ ntwd_get_id <- function(id, .verbose) {
 #'
 #' @details Not all objects contain metadata
 #'
+#' @return A chracter vector.
+#'
+#' @seealso
 #' @export
 #'
 #' @examples
@@ -63,6 +66,8 @@ ntwd_meta <- function(x) {
 #'
 #' @param id which dataset `id`to fetch.
 #' @param verbose prints the download url of the data.
+#'
+#' @return Returns a tibble.
 #'
 #' @export
 #'
