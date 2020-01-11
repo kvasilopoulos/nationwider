@@ -4,10 +4,12 @@
 \alias{ntwd_get}
 \title{Download House Price Data from Nationwide}
 \usage{
-ntwd_get(id)
+ntwd_get(id, verbose = TRUE)
 }
 \arguments{
 \item{id}{which dataset `id`to fetch.}
+
+\item{verbose}{prints the download url of the data.}
 }
 \description{
 This function scrapes Nationwide's House Price Index webpage and
