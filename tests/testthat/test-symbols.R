@@ -1,15 +1,12 @@
-context("functionality")
+context("get")
 
-ids <- c(
-  "monthly", "quarterly", "since_1952", "inflation_adjusted",
-  "regional", "seasonal_regional",
-  "new_prop", "mod_prop", "old_prop", "not_new_prop",
-  "first", "fowner",
-  "terraced", "flats", "semi_det","detached",
-  "aftb_ind", "aftb_hper"
-)
+test_that("right id", {
+  expect_error(ntwd_get("wrong_id"))
+})
 
 test_that("id works", {
+  skip_if_offline()
+
   expect_error(ntwd_get("monthly"), NA)
   expect_error(ntwd_get("quarterly"), NA)
   expect_error(ntwd_get("since_1952"), NA)
