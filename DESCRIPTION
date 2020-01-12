@@ -1,6 +1,6 @@
 Package: nationwider
 Title: Download House Price Data from Nationwide
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: 
     person(given = "Kostas",
            family = "Vasilopoulos",
