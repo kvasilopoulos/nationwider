@@ -36,10 +36,10 @@ ntwd_get_generic <- function(id, .access_info) {
   xfile <- ntwd_tf(num[1], access_info = .access_info)
   on.exit(file.remove(xfile))
   x <- read_excel_silently(xfile, skip = 0, n_max = 3, col_names = FALSE)
-  x[1,] <- zoo::na.locf(unlist(x[1,])) %>% char_na()
-  x[2,] <- char_na(x[2,])
+  x[1,] <- zoo::na.locf(unlist(x[1,])) %>% char_na() %>% as.list()
+  x[2,] <- char_na(x[2,]) %>% as.list()
   x[3,] <- gsub("\u00A3", " :Price", x[3,]) %>%
-    gsub("INDEX", " : Index", .) %>% char_na()
+    gsub("INDEX", " : Index", .) %>% char_na() %>% as.list()
   nms <- transmute_all(x, paste, collapse = " ") %>%
     slice(2) %>%  unlist(use.names = FALSE) %>% gsub("^: ", "", .) %>%
     trimws() %>% gsub("\\s+"," ",.)
@@ -82,8 +82,8 @@ ntwd_get_since_1952 <- function(.access_info) {
   xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   x <- read_excel_silently(xfile, skip = 3, n_max = 3, col_names = FALSE)
-  x[1,] <- c("", zoo::na.locf(unlist(x[1,])))
-  x[2,] <- paste0(": ", x[2,])
+  x[1,] <- c("", zoo::na.locf(unlist(x[1,]))) %>% as.list()
+  x[2,] <- paste0(": ", x[2,]) %>% as.list()
   x <- x[-3,]
   # x[3,] <- paste0(" (", x[3,], ")")
 
@@ -127,7 +127,7 @@ ntwd_get_seasonal_regional <- function(.access_info) {
   on.exit(file.remove(xfile))
   x <- read_excel_silently(xfile, skip = 0, n_max = 3, col_names = FALSE)
   x <- x[-2,]
-  x[1,] <- c(NA, zoo::na.locf(unlist(x[1,]))) %>% char_na()
+  x[1,] <- c(NA, zoo::na.locf(unlist(x[1,]))) %>% char_na() %>% as.list()
   nms <- transmute_all(x, paste, collapse = " ") %>%
     slice(2) %>%
     unlist(use.names = FALSE) %>%
