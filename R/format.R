@@ -56,6 +56,7 @@ ntwd_get_generic <- function(id, .access_info) {
 
 ntwd_get_monthly <- function(.access_info) {
   xfile <- ntwd_tf(1, access_info = .access_info)
+  xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   xfile %>%
     read_excel_silently(.) %>%
@@ -66,6 +67,7 @@ ntwd_get_monthly <- function(.access_info) {
 
 ntwd_get_quarterly <- function(.access_info) {
   xfile <- ntwd_tf(2, access_info = .access_info)
+  xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   xfile %>%
     read_excel_silently(.) %>%
@@ -77,6 +79,7 @@ ntwd_get_quarterly <- function(.access_info) {
 
 ntwd_get_since_1952 <- function(.access_info) {
   xfile <- ntwd_tf(3, access_info = .access_info)
+  xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   x <- read_excel_silently(xfile, skip = 3, n_max = 3, col_names = FALSE)
   x[1,] <- c("", zoo::na.locf(unlist(x[1,])))
@@ -107,6 +110,7 @@ ntwd_get_since_1952 <- function(.access_info) {
 
 ntwd_get_inflation_adjusted <- function(.access_info) {
   xfile <- ntwd_tf(4, access_info = .access_info)
+  xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   skip_after <- read_excel_silently(xfile) %>% trunc_na() %>% nrow()
   read_excel_silently(xfile, n_max = skip_after) %>%
@@ -119,6 +123,7 @@ ntwd_get_inflation_adjusted <- function(.access_info) {
 #' @importFrom dplyr recode
 ntwd_get_seasonal_regional <- function(.access_info) {
   xfile <- ntwd_tf(6, access_info = .access_info)
+  xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   x <- read_excel_silently(xfile, skip = 0, n_max = 3, col_names = FALSE)
   x <- x[-2,]
@@ -148,6 +153,7 @@ ntwd_get_seasonal_regional <- function(.access_info) {
 
 ntwd_get_not_new_prop <- function(.access_info) {
   xfile <- ntwd_tf(10, access_info = .access_info)
+  xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   nms <- c("Date", "UK Not new") #(\u00A3)
   read_excel_silently(
@@ -162,6 +168,7 @@ ntwd_get_not_new_prop <- function(.access_info) {
 
 ntwd_get_aftb_ind <- function(.access_info) {
   xfile <- ntwd_tf(17, access_info = .access_info)
+  xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   percent <- read_excel_silently(xfile, skip = 3) %>%
     clean_date_yq() %>%
@@ -178,6 +185,7 @@ ntwd_get_aftb_ind <- function(.access_info) {
 
 ntwd_get_aftb_hper <- function(.access_info) {
   xfile <- ntwd_tf(18, access_info = .access_info)
+  xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   xfile %>%
     read_excel_silently(.) %>%

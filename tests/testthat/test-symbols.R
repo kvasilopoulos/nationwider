@@ -6,6 +6,7 @@ test_that("right id", {
 
 test_that("id works", {
   skip_if_offline()
+  skip_if_http_error()
 
   expect_error(ntwd_get("monthly"), NA)
   expect_error(ntwd_get("quarterly"), NA)

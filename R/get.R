@@ -16,27 +16,19 @@ ntwd_get_id <- function(id, .verbose) {
   if (!(id %in% id_categories)) {
     stop("`id` is not valid, see ?ntwd_dataset.", call. = FALSE)
   }
-  out <- tryCatch({
-    switch(
-      id,
-      monthly = ntwd_get_monthly(.access_info = .verbose),
-      quarterly = ntwd_get_quarterly(.access_info = .verbose),
-      since_1952 = ntwd_get_since_1952(.access_info = .verbose),
-      inflation_adjusted = ntwd_get_inflation_adjusted(.access_info = .verbose),
-      regional = ntwd_get_generic("all_prop", .access_info = .verbose),
-      seasonal_regional = ntwd_get_seasonal_regional(.access_info = .verbose),
-      not_new_prop = ntwd_get_not_new_prop(.access_info = .verbose),
-      aftb_ind = ntwd_get_aftb_ind(.access_info = .verbose),
-      aftb_hper = ntwd_get_aftb_hper(.access_info = .verbose),
-      ntwd_get_generic(id, .access_info = .verbose)
-    )},
-    error = function(e) message(conditionMessage(e)), # demote to msg
-    warning = function(w) message(conditionMessage(w)) # demote to msg
+  switch(
+    id,
+    monthly = ntwd_get_monthly(.access_info = .verbose),
+    quarterly = ntwd_get_quarterly(.access_info = .verbose),
+    since_1952 = ntwd_get_since_1952(.access_info = .verbose),
+    inflation_adjusted = ntwd_get_inflation_adjusted(.access_info = .verbose),
+    regional = ntwd_get_generic("all_prop", .access_info = .verbose),
+    seasonal_regional = ntwd_get_seasonal_regional(.access_info = .verbose),
+    not_new_prop = ntwd_get_not_new_prop(.access_info = .verbose),
+    aftb_ind = ntwd_get_aftb_ind(.access_info = .verbose),
+    aftb_hper = ntwd_get_aftb_hper(.access_info = .verbose),
+    ntwd_get_generic(id, .access_info = .verbose)
   )
-  if (is.null(out)) {
-    return(invisible())
-  }
-  out
 }
 
 #' Access object's metadata

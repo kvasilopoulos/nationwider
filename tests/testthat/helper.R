@@ -15,3 +15,8 @@ is_tidy <- function(x) {
 expect_tidy <- function(x) {
   expect(is_tidy(x), "object is not tidy")
 }
+
+skip_if_http_error <- function() {
+  remote_file <- "https://www.nationwide.co.uk/about/house-price-index/download-data"
+  skip_if(httr::http_error(remote_file))
+}

@@ -2,6 +2,7 @@ context("tidy")
 
 test_that("tidy objects", {
   skip_if_offline()
+  skip_if_http_error()
 
   expect_tidy(ntwd_get("monthly"))
   expect_tidy(ntwd_get("quarterly"))
