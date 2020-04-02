@@ -1,7 +1,12 @@
 context("get")
 
-test_that("right id", {
-  expect_error(ntwd_get("wrong_id"))
+test_that("id error messages", {
+  expect_error(ntwd_get("wrong_id")) # probably backtickes or ? throws of an error about the msg
+  expect_error(ntwd_get()) # same here
+  expect_error(
+    ntwd_get(c("monthly", "quarterly")),
+    "trying to access multiple files"
+  )
 })
 
 test_that("id works", {
