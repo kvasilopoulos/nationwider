@@ -41,7 +41,7 @@ ntwd_get_id <- function(id, .verbose) {
 #'
 #' @details Not all objects contain metadata
 #'
-#' @return A chracter vector.
+#' @return A character vector.
 #'
 #' @export
 #'
