@@ -13,7 +13,7 @@ is_response <- function(x) {
 #' @importFrom httr GET write_disk timeout
 #' @importFrom rvest html_nodes html_attrs
 #' @importFrom xml2 read_html
-ntwd_tf <- function(filenum = NULL, regexp = NULL, access_info = FALSE) {
+ntwd_tf <- function(filenum = NULL, access_info = FALSE) {
 
   if (!curl::has_internet()) {
     message("No internet connection.")
@@ -37,15 +37,16 @@ ntwd_tf <- function(filenum = NULL, regexp = NULL, access_info = FALSE) {
     grep(".xls", ., value = TRUE) %>%
     paste0("https://www.nationwide.co.uk", .)
 
-  if (is.null(filenum) && is.null(regexp)) {
+  if (is.null(filenum)) { #&& is.null(regexp)
     return(urls)
-  }
-  if (!is.null(filenum)) {
+  } else{
     url <- magrittr::extract(urls, filenum)
   }
-  if (!is.null(regexp)) {
-    url <- grep(regexp, urls, value = TRUE)
-  }
+  # if (!is.null(regexp)) {
+  #   url <- grep(regexp, urls, value = TRUE)
+  #   return(url)
+  #   if (url == character(0)) stop("no pattern found")
+  # }
   if (length(url) > 1) {
     stop("trying to access multiple files", call. = FALSE)
   }
@@ -56,7 +57,7 @@ ntwd_tf <- function(filenum = NULL, regexp = NULL, access_info = FALSE) {
   resp_file <- try_GET(url, write_disk(tf))
   if (!is_response(resp_file)) {
     message(resp_file)
-    return(NULL)
+    return(invisible(NULL))
   }
   structure(tf, source = url, class = "access_url")
 }

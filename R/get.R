@@ -13,6 +13,9 @@ ntwd_get_id <- function(id, .verbose) {
       "terraced", "flats", "semi_det", "detached",
       "aftb_ind", "aftb_hper")
 
+  if (length(id) > 1) {
+    stop("trying to access multiple files", call. = FALSE)
+  }
   if (!(id %in% id_categories)) {
     stop("`id` is not valid, see ?ntwd_dataset.", call. = FALSE)
   }
