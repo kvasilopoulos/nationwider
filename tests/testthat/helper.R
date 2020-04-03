@@ -20,3 +20,12 @@ skip_if_http_error <- function() {
   remote_file <- "https://www.nationwide.co.uk/about/house-price-index/download-data"
   skip_if(httr::http_error(remote_file))
 }
+
+
+catch_message <- function(url) {
+  msg <- tryCatch(
+    url,
+    message = function(m) m
+  )
+  conditionMessage(msg)
+}

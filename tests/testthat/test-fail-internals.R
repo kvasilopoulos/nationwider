@@ -8,9 +8,9 @@ test_that("ntwd_tf", {
     attr(ntwd_tf(1), "source"),
     "https://www.nationwide.co.uk/-/media/MainSite/documents/about/house-price-index/downloads/monthly.xls"
   )
-  expect_message(
-    ntwd_tf(1, access_info = TRUE),
-    "Accessing https://www.nationwide.co.uk/-/media/MainSite/documents/about/house-price-index/downloads/monthly.xls"
+  expect_identical(
+    catch_message(ntwd_tf(1, access_info = TRUE)),
+    "Accessing https://www.nationwide.co.uk/-/media/MainSite/documents/about/house-price-index/downloads/monthly.xls\n"
   )
   expect_message(
     ntwd_tf(40),
