@@ -12,8 +12,8 @@ test_that("ntwd_tf", {
   #   catch_message(ntwd_tf(1, access_info = TRUE)),
   #   "Accessing https://www.nationwide.co.uk/-/media/MainSite/documents/about/house-price-index/downloads/monthly.xls\n"
   # )
-  expect_message(
-    ntwd_tf(40),
-    "Could not resolve host: NA"
-    )
+  # expect_message(
+  #   ntwd_tf(40),
+  #   "Could not resolve host: NA"
+  #   )
 })
