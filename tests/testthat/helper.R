@@ -21,11 +21,10 @@ skip_if_http_error <- function() {
   skip_if(httr::http_error(remote_file))
 }
 
-
-catch_message <- function(url) {
-  msg <- tryCatch(
-    url,
-    message = function(m) m
-  )
-  conditionMessage(msg)
-}
+# catch_message <- function(url) {
+#   msg <- tryCatch(
+#     url,
+#     message = function(m) m
+#   )
+#   conditionMessage(msg)
+# }
