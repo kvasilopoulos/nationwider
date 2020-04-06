@@ -1,6 +1,18 @@
 # nationwider 1.1.1
 
-* Fixed timeout error in tests (basically skipped_on_cran)
+## New Features
+
+* `ntwd_get` now prints the url of the excle file it is accessing. Option can be
+skipped if `verbose` argument is set to `FALSE`.
+
+## Bug Fixes
+
+* Adjusted functions to gracefully fail (all errors are demoted to messages) if:
+  - There is no internet
+  - http error status
+  - Timeout error
+  
+* Fixed after tibble 1.0.0. 
 
 # nationwider 1.1.0
 
