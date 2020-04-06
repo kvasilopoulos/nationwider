@@ -2,7 +2,7 @@
 
 ## New Features
 
-* `ntwd_get` now prints the url of the excle file it is accessing. Option can be
+* `ntwd_get` now prints the url of the sourced excel file. Option can be
 skipped if `verbose` argument is set to `FALSE`.
 
 ## Bug Fixes
@@ -12,7 +12,7 @@ skipped if `verbose` argument is set to `FALSE`.
   - http error status
   - Timeout error
   
-* Fixed after tibble 1.0.0. 
+* Fixed row subassignment after tibble 1.0.0. update.
 
 # nationwider 1.1.0
 
