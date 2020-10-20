@@ -1,6 +1,6 @@
 ## Test environments
 
-* local OS MS install, R 3.6.2
+* local OS MS install, R 4.0.2
 * Continuous Integration
   * Ubuntu Trusty 14.04 on travis-ci (devel and release)
   * macOS on travis-ci (devel and release)
