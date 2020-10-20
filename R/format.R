@@ -50,7 +50,9 @@ ntwd_get_generic <- function(id, .access_info) {
     gather(type, value, -Date) %>%
     separate(type, into = c("region", "type"),  sep = "[^[:alnum:]]:") %>%
     # mutate(type = recode(type, "\u00A3" = "Price", "INDEX" = "Index")) %>%
-    mutate(region = stringr::str_to_title(region)) %>%
+    mutate(
+      region = stringr::str_to_title(region),
+      region = recode(region, "Uk" = "UK")) %>%
     set_source(xfile)
 }
 

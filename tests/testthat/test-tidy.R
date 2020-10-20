@@ -25,3 +25,7 @@ test_that("tidy objects", {
 
 
 
+test_that("UK is capital", {
+  expect_true("UK" %in% unique(ntwd_get("mod_prop")$region))
+  expect_true("UK" %in% unique(ntwd_get("regional")$region))
+})
