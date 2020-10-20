@@ -1,7 +1,7 @@
 
 try_GET <- function(x, ...) {
   tryCatch(
-    GET(url = x, timeout(10), ...),
+    RETRY("GET", url = x, timeout(10),  quiet = TRUE,...),
     error = function(err) conditionMessage(err),
     warning = function(warn) conditionMessage(warn)
   )
