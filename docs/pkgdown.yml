@@ -1,8 +1,0 @@
-pandoc: 2.7.2
-pkgdown: 1.4.1
-pkgdown_sha: ~
-articles: []
-urls:
-  reference: https://kvasilopoulos.github.io/nationwider//reference
-  article: https://kvasilopoulos.github.io/nationwider//articles
-

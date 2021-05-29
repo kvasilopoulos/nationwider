@@ -12,14 +12,14 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# nationwider
+# nationwider <a href='https://kvasilopoulos.github.io/nationwider'><img src='man/figures/logo.png' align="right" height="138" /></a>
+
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/nationwider)](https://CRAN.R-project.org/package=nationwider)
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Travis build status](https://travis-ci.org/kvasilopoulos/nationwider.svg?branch=master)](https://travis-ci.org/kvasilopoulos/nationwider)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/kvasilopoulos/nationwider?branch=master&svg=true)](https://ci.appveyor.com/project/kvasilopoulos/nationwider)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Codecov test coverage](https://codecov.io/gh/kvasilopoulos/nationwider/branch/master/graph/badge.svg)](https://codecov.io/gh/kvasilopoulos/nationwider?branch=master)
+[![R-CMD-check](https://github.com/kvasilopoulos/nationwider/workflows/R-CMD-check/badge.svg)](https://github.com/kvasilopoulos/nationwider/actions)
 <!-- badges: end -->
 
 The goal of {nationwider} is to provide house price data from [<nationwide.co.uk>](https://www.nationwide.co.uk/). All datasets available have 
