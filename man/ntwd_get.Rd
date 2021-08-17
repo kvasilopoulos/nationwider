@@ -25,8 +25,6 @@ For more information the user can browse the source webpage through
 \donttest{
 ntwd_get("monthly")
 
-ntwd_get("terraced")
-
 # For a list of datasets
 ?ntwd_datasets
 }

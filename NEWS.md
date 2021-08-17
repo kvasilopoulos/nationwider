@@ -2,7 +2,7 @@
 # nationwider 1.1.2
 
 * use `RETRY` is http requests as per best practice
-* Capitalized properly `UK` in region namess
+* Capitalized properly `UK` in region names
 
 # nationwider 1.1.1
 

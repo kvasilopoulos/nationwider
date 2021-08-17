@@ -1,4 +1,5 @@
 
+#' @importFrom httr RETRY
 try_GET <- function(x, ...) {
   tryCatch(
     RETRY("GET", url = x, timeout(10),  quiet = TRUE,...),
@@ -6,6 +7,7 @@ try_GET <- function(x, ...) {
     warning = function(warn) conditionMessage(warn)
   )
 }
+
 is_response <- function(x) {
   class(x) == "response"
 }
@@ -13,14 +15,13 @@ is_response <- function(x) {
 #' @importFrom httr GET write_disk timeout
 #' @importFrom rvest html_nodes html_attrs
 #' @importFrom xml2 read_html
-ntwd_tf <- function(filenum = NULL, access_info = FALSE) {
+ntwd_tf <- function(href, access_info = FALSE) {
 
   if (!curl::has_internet()) {
     message("No internet connection.")
     return(invisible(NULL))
   }
-  remote <- "https://www.nationwide.co.uk/about/house-price-index/download-data"
-  resp <- try_GET(remote)
+  resp <- try_GET(href)
   if (!is_response(resp)) {
     message(resp)
     return(invisible(NULL))
@@ -29,37 +30,16 @@ ntwd_tf <- function(filenum = NULL, access_info = FALSE) {
     httr::message_for_status(resp)
     return(invisible(NULL))
   }
-  urls <-
-    xml2::read_html(resp) %>%
-    rvest::html_nodes(".concertina") %>%
-    rvest::html_nodes("a") %>%
-    rvest::html_attr("href") %>%
-    grep(".xls", ., value = TRUE) %>%
-    paste0("https://www.nationwide.co.uk", .)
-
-  if (is.null(filenum)) { #&& is.null(regexp)
-    return(urls)
-  } else{
-    url <- magrittr::extract(urls, filenum)
-  }
-  # if (!is.null(regexp)) {
-  #   url <- grep(regexp, urls, value = TRUE)
-  #   return(url)
-  #   if (url == character(0)) stop("no pattern found")
-  # }
-  if (length(url) > 1) {
-    stop("trying to access multiple files", call. = FALSE)
-  }
   if (interactive() && access_info) {
-    message("Accessing ", url)
+    message("Accessing ", href)
   }
   tf <- tempfile(fileext = ".xls")
-  resp_file <- try_GET(url, write_disk(tf))
+  resp_file <- try_GET(href, write_disk(tf))
   if (!is_response(resp_file)) {
     message(resp_file)
     return(invisible(NULL))
   }
-  structure(tf, source = url, class = "access_url")
+  structure(tf, source = href, class = "access_url")
 }
 
 enclose <- function(x) {

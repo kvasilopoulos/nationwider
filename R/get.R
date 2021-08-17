@@ -1,37 +1,58 @@
 
 # 5,7-16 same format ------------------------------------------------------
 
-ntwd_get_id <- function(id, .verbose) {
-  if (missing(id)) {
-    stop("You must specify a `id`, see ?nwtd_dataset", call. = FALSE)
-  }
-  id_categories <-
-    c("monthly", "quarterly", "since_1952", "inflation_adjusted",
-      "regional", "seasonal_regional",
-      "new_prop", "mod_prop", "old_prop", "not_new_prop",
-      "first","fowner",
-      "terraced", "flats", "semi_det", "detached",
-      "aftb_ind", "aftb_hper")
+avail_ids <- function() {
+  ntwd_dataset$id
+}
 
+ntwd_get_id <- function(id, .verbose) {
+
+  if (missing(id)) {
+    stop("You must specify a `id`, see `avail_ids()`", call. = FALSE)
+  }
   if (length(id) > 1) {
     stop("trying to access multiple files", call. = FALSE)
   }
-  if (!(id %in% id_categories)) {
+  ids <-
+    c("monthly", "quarterly", "since_1952", "inflation_adjusted",
+      # "regional",
+      "seasonal_regional"#,
+      # # "new_prop", "mod_prop", "old_prop", "not_new_prop",
+      # "first","fowner",
+      # "terraced", "flats", "semi_det", "detached",
+      # "aftb_ind", "aftb_hper"
+    )
+  if (!(id %in% ids)) {
     stop("`id` is not valid, see ?ntwd_dataset.", call. = FALSE)
   }
-  switch(
-    id,
-    monthly = ntwd_get_monthly(.access_info = .verbose),
-    quarterly = ntwd_get_quarterly(.access_info = .verbose),
-    since_1952 = ntwd_get_since_1952(.access_info = .verbose),
-    inflation_adjusted = ntwd_get_inflation_adjusted(.access_info = .verbose),
-    regional = ntwd_get_generic("all_prop", .access_info = .verbose),
-    seasonal_regional = ntwd_get_seasonal_regional(.access_info = .verbose),
-    not_new_prop = ntwd_get_not_new_prop(.access_info = .verbose),
-    aftb_ind = ntwd_get_aftb_ind(.access_info = .verbose),
-    aftb_hper = ntwd_get_aftb_hper(.access_info = .verbose),
-    ntwd_get_generic(id, .access_info = .verbose)
+
+  resp  <- tryCatch(expr = {
+    switch(
+      id,
+      monthly = ntwd_get_monthly(.access_info = .verbose),
+      quarterly = ntwd_get_quarterly(.access_info = .verbose),
+      since_1952 = ntwd_get_since_1952(.access_info = .verbose),
+      inflation_adjusted = ntwd_get_inflation_adjusted(.access_info = .verbose),
+      # regional = ntwd_get_generic("all-buyers-hper-by-region", .access_info = .verbose),
+      seasonal_regional = ntwd_get_seasonal_regional(.access_info = .verbose)#,
+      # not_new_prop = ntwd_get_not_new_prop(.access_info = .verbose),
+      # aftb_ind = ntwd_get_aftb_ind(.access_info = .verbose),
+      # aftb_hper = ntwd_get_aftb_hper(.access_info = .verbose),
+      # ntwd_get_generic(id, .access_info = .verbose)
+    )
+  },
+  error = function(err) conditionMessage(err),
+  warning = function(warn) conditionMessage(warn)
   )
+  # if (!is_response(resp)) {
+  #   message(resp)
+  #   return(invisible(NULL))
+  # }
+  # if (httr::http_error(resp)) { # network is down = message (not an error anymore)
+  #   httr::message_for_status(resp)
+  #   return(invisible(NULL))
+  # }
+  resp
 }
 
 #' Access object's metadata
@@ -77,8 +98,6 @@ ntwd_meta <- function(x) {
 #' @examples
 #'\donttest{
 #' ntwd_get("monthly")
-#'
-#' ntwd_get("terraced")
 #'
 #' # For a list of datasets
 #' ?ntwd_datasets

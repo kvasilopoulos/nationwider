@@ -32,8 +32,8 @@ set_source <- function(tbl, url) {
 #' @importFrom magrittr set_names
 #' @importFrom lubridate is.Date yq
 ntwd_get_generic <- function(id, .access_info) {
-  num <- grep(gsub("_", "-", id), ntwd_tf(NULL))
-  xfile <- ntwd_tf(num[1], access_info = .access_info)
+  # num <- grep(gsub("_", "-", id), ntwd_tf(NULL))
+  xfile <- ntwd_tf(id_to_href(id), access_info = .access_info)
   on.exit(file.remove(xfile))
   x <- read_excel_silently(xfile, skip = 0, n_max = 3, col_names = FALSE)
   x[1,] <- zoo::na.locf(unlist(x[1,])) %>% char_na() %>% as.list()
@@ -56,8 +56,13 @@ ntwd_get_generic <- function(id, .access_info) {
     set_source(xfile)
 }
 
+id_to_href <- function(id) {
+  idx <- which(ntwd_dataset$id %in% id)
+  ntwd_dataset$href[idx]
+}
+
 ntwd_get_monthly <- function(.access_info) {
-  xfile <- ntwd_tf(1, access_info = .access_info)
+  xfile <- ntwd_tf(id_to_href("uk-monthly-index"), access_info = .access_info)
   xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   xfile %>%
@@ -68,7 +73,7 @@ ntwd_get_monthly <- function(.access_info) {
 }
 
 ntwd_get_quarterly <- function(.access_info) {
-  xfile <- ntwd_tf(2, access_info = .access_info)
+  xfile <- ntwd_tf(id_to_href("uk-quarterly-indices-post-91"), access_info = .access_info)
   xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   xfile %>%
@@ -80,7 +85,7 @@ ntwd_get_quarterly <- function(.access_info) {
 }
 
 ntwd_get_since_1952 <- function(.access_info) {
-  xfile <- ntwd_tf(3, access_info = .access_info)
+  xfile <- ntwd_tf(id_to_href("uk-house-prices-since-1952"), access_info = .access_info)
   xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   x <- read_excel_silently(xfile, skip = 3, n_max = 3, col_names = FALSE)
@@ -111,7 +116,7 @@ ntwd_get_since_1952 <- function(.access_info) {
 }
 
 ntwd_get_inflation_adjusted <- function(.access_info) {
-  xfile <- ntwd_tf(4, access_info = .access_info)
+  xfile <- ntwd_tf(id_to_href("uk-house-prices-adjusted-for-inflation"), access_info = .access_info)
   xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   skip_after <- read_excel_silently(xfile) %>% trunc_na() %>% nrow()
@@ -124,7 +129,7 @@ ntwd_get_inflation_adjusted <- function(.access_info) {
 
 #' @importFrom dplyr recode
 ntwd_get_seasonal_regional <- function(.access_info) {
-  xfile <- ntwd_tf(6, access_info = .access_info)
+  xfile <- ntwd_tf(id_to_href("seasonally-adjusted-regional-quarterly-indices"), access_info = .access_info)
   xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   x <- read_excel_silently(xfile, skip = 0, n_max = 3, col_names = FALSE)
@@ -154,7 +159,7 @@ ntwd_get_seasonal_regional <- function(.access_info) {
 }
 
 ntwd_get_not_new_prop <- function(.access_info) {
-  xfile <- ntwd_tf(10, access_info = .access_info)
+  xfile <- ntwd_tf(id_to_href("not-new-properties-post-1995"), access_info = .access_info)
   xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   nms <- c("Date", "UK Not new") #(\u00A3)
@@ -169,7 +174,7 @@ ntwd_get_not_new_prop <- function(.access_info) {
 }
 
 ntwd_get_aftb_ind <- function(.access_info) {
-  xfile <- ntwd_tf(17, access_info = .access_info)
+  xfile <- ntwd_tf(id_to_href("uk-house-prices-adjusted-for-inflation"), access_info = .access_info)
   xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   percent <- read_excel_silently(xfile, skip = 3) %>%
@@ -186,7 +191,7 @@ ntwd_get_aftb_ind <- function(.access_info) {
 }
 
 ntwd_get_aftb_hper <- function(.access_info) {
-  xfile <- ntwd_tf(18, access_info = .access_info)
+  xfile <- ntwd_tf(id_to_href("uk-house-prices-adjusted-for-inflation"), access_info = .access_info)
   xfile %||% return(invisible(NULL))
   on.exit(file.remove(xfile))
   xfile %>%

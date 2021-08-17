@@ -1,4 +1,5 @@
 context("fail-internals")
+skip(TRUE)
 
 test_that("ntwd_tf", {
   skip_if_offline()
