@@ -2,7 +2,7 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-05-29T09:38Z
+last_built: 2021-08-17T13:22Z
 urls:
   reference: https://kvasilopoulos.github.io/nationwider//reference
   article: https://kvasilopoulos.github.io/nationwider//articles
