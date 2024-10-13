@@ -33,7 +33,7 @@ ntwd_tf <- function(href, access_info = FALSE) {
   if (interactive() && access_info) {
     message("Accessing ", href)
   }
-  tf <- tempfile(fileext = ".xls")
+  tf <- tempfile(fileext = ".xlsx")
   resp_file <- try_GET(href, write_disk(tf))
   if (!is_response(resp_file)) {
     message(resp_file)
