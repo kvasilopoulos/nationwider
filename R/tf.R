@@ -46,7 +46,8 @@ enclose <- function(x) {
   paste0("[", x, "]")
 }
 
-print.access_url <- function(x) {
+#' @export
+print.access_url <- function(x, ...) {
   cat(enclose("Local file"), "\n\t", x, "\n")
   cat(enclose("Remote file:"), "\n\t", attr(x, "source"))
 }

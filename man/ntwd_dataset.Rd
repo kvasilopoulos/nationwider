@@ -18,37 +18,30 @@ provided by nationwide.
    \itemize{
      \item \code{monthly}: UK Monthly Indices (Post '91)
      \item \code{quarterly}: UK Quarterly Indices (Post '91)
-     \item \code{since_1952}: UK House Prices Since 1952
-     \item \code{inflation_adjusted}: UK House Prices Adjusted for Inflation
+     \item \code{uk-house-price-since-1952}: UK House Prices Since 1952
+     \item \code{uk-house-prices-adjusted-for-inflation}: UK House Prices Adjusted for Inflation
    }
  \item UK & regional quarterly series – all properties (data available from 1973 onwards)
   \itemize{
-     \item \code{regional}: Regional Quarterly Indices (Post '73)
-     \item \code{seasonal_regional}: Seasonally Adjusted Regional Quarterly Indices
+     \item \code{seasonal-regional}: Seasonally Adjusted Regional Quarterly Indices
+     \item \code{all-prop}: All Properties
    }
  \item UK & regional quarterly series - by property age group (data available from 1973 onwards)
   \itemize{
-    \item \code{new_prop}: New Properties (Post '73)
-    \item \code{mod_prop}: Modern Properties (Post '73) - discontinued
-    \item \code{old_prop}: Older Properties (Post '73) - discontinued
-    \item \code{not_new_prop}: Not New Properties (Post '95)
+    \item \code{new-prop}: New Properties (Post '73)
+    \item \code{not-new-prop}: Not New Properties (Post '95)
    }
  \item UK & regional quarterly series - by buyer type (data available from 1983 onwards)
   \itemize{
-     \item \code{first}: First Time Buyer (Post '83)
+     \item \code{first-by}: First Time Buyer (Post '83)
      \item \code{fowner}: Former Owner Occupier (Post '83)
    }
  \item UK & regional quarterly series - by property type (data available from 1991 onwards; regional data ends Q2 2015, UK only thereafter)
   \itemize{
-    \item \code{terraced}: Terraced (Post '91)
-    \item \code{flats}: Flats (Post '91)
-    \item \code{semi_det}: Semi Detached (Post '91)
-    \item \code{detached}: Detached (Post '91)
-   }
- \item Affordability Estimates
-  \itemize{
-     \item \code{aftb_ind}: First Time Buyer Affordability Indices
-     \item \code{aftb_hper}: First Time Buyer House Price Earnings Ratios
+    \item \code{terraced-post-1991}: Terraced (Post '91)
+    \item \code{flats-post-1991}: Flats (Post '91)
+    \item \code{semi-detached-post-1991}: Semi Detached (Post '91)
+    \item \code{detached-post-1991}: Detached (Post '91)
    }
 }
 }

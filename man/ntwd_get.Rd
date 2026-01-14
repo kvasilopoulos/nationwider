@@ -24,6 +24,7 @@ For more information the user can browse the source webpage through
 \examples{
 \donttest{
 ntwd_get("monthly")
+ntwd_get("uk-house-price-since-1952")
 
 # For a list of datasets
 ?ntwd_datasets

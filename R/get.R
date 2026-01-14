@@ -5,6 +5,27 @@ avail_ids <- function() {
   ntwd_dataset$id
 }
 
+# Backward compatibility mapping for old underscore-based IDs
+translate_legacy_id <- function(id) {
+  legacy_map <- c(
+    "since_1952" = "uk-house-price-since-1952",
+    "inflation_adjusted" = "uk-house-prices-adjusted-for-inflation",
+    "seasonal_regional" = "seasonal-regional",
+    "new_prop" = "new-prop",
+    "not_new_prop" = "not-new-prop",
+    "first" = "first-by",
+    "terraced" = "terraced-post-1991",
+    "flats" = "flats-post-1991",
+    "semi_det" = "semi-detached-post-1991",
+    "detached" = "detached-post-1991"
+  )
+
+  if (id %in% names(legacy_map)) {
+    return(legacy_map[[id]])
+  }
+  return(id)
+}
+
 ntwd_get_id <- function(id, .verbose) {
 
   if (missing(id)) {
@@ -13,32 +34,25 @@ ntwd_get_id <- function(id, .verbose) {
   if (length(id) > 1) {
     stop("trying to access multiple files", call. = FALSE)
   }
-  ids <-
-    c("monthly", "quarterly", "since_1952", "inflation_adjusted",
-      # "regional",
-      "seasonal_regional"#,
-      # # "new_prop", "mod_prop", "old_prop", "not_new_prop",
-      # "first","fowner",
-      # "terraced", "flats", "semi_det", "detached",
-      # "aftb_ind", "aftb_hper"
-    )
-  if (!(id %in% ids)) {
+
+  # Translate legacy IDs for backward compatibility
+  id <- translate_legacy_id(id)
+
+  if (!(id %in% avail_ids())) {
     stop("`id` is not valid, see ?ntwd_dataset.", call. = FALSE)
   }
-
+  id_flat <- gsub("-", "_", id)
   resp  <- tryCatch(expr = {
     switch(
-      id,
+      id_flat,
       monthly = ntwd_get_monthly(.access_info = .verbose),
       quarterly = ntwd_get_quarterly(.access_info = .verbose),
-      since_1952 = ntwd_get_since_1952(.access_info = .verbose),
-      inflation_adjusted = ntwd_get_inflation_adjusted(.access_info = .verbose),
-      # regional = ntwd_get_generic("all-buyers-hper-by-region", .access_info = .verbose),
-      seasonal_regional = ntwd_get_seasonal_regional(.access_info = .verbose)#,
+      uk_house_price_since_1952 = ntwd_get_since_1952(.access_info = .verbose),
+      uk_house_prices_adjusted_for_inflation = ntwd_get_inflation_adjusted(.access_info = .verbose),
+      # all_buyers_hper_by_region = ntwd_get_generic("all-buyers-hper-by-region", .access_info = .verbose),
+      seasonal_regional = ntwd_get_seasonal_regional(.access_info = .verbose),
       # not_new_prop = ntwd_get_not_new_prop(.access_info = .verbose),
-      # aftb_ind = ntwd_get_aftb_ind(.access_info = .verbose),
-      # aftb_hper = ntwd_get_aftb_hper(.access_info = .verbose),
-      # ntwd_get_generic(id, .access_info = .verbose)
+      ntwd_get_generic(id, .access_info = .verbose)
     )
   },
   error = function(err) conditionMessage(err),
@@ -71,7 +85,7 @@ ntwd_get_id <- function(id, .verbose) {
 #'
 #' @examples
 #' \donttest{
-#' x <- ntwd_get("since_1952")
+#' x <- ntwd_get("uk-house-price-since-1952")
 #' ntwd_meta(x)
 #' }
 ntwd_meta <- function(x) {
@@ -98,6 +112,7 @@ ntwd_meta <- function(x) {
 #' @examples
 #'\donttest{
 #' ntwd_get("monthly")
+#' ntwd_get("uk-house-price-since-1952")
 #'
 #' # For a list of datasets
 #' ?ntwd_datasets

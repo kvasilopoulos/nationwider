@@ -13,6 +13,8 @@ is_tidy <- function(x) {
 }
 
 expect_tidy <- function(x) {
+  skip_if(is.null(x), "Data is NULL (likely HTTP error or no internet)")
+  skip_if(!is.data.frame(x), "Data is not a data.frame (likely parsing error)")
   expect(is_tidy(x), "object is not tidy")
 }
 

@@ -22,7 +22,7 @@ Not all objects contain metadata
 }
 \examples{
 \donttest{
-x <- ntwd_get("since_1952")
+x <- ntwd_get("uk-house-price-since-1952")
 ntwd_meta(x)
 }
 }
